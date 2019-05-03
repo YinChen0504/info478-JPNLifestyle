@@ -14,11 +14,11 @@
 
   > Research has been done in the area of lifestyle and life expectancy. Some of the related research we found relevant to our project are:
 
-    > Does Physical Activity Increase Life Expectancy? A Review of the Literature -  The purpose of this article was to synthesize the literature on **life expectancy in relation to physical activity**. A systematic PubMed search on life expectancy in physically active and inactive individuals was performed. In addition, articles comparing life expectancy of athletes compared to that of non athletes were reviewed. The results from this study suggest that regular physical activity increases life expectancy but it is unclear if high intensity sports activities further increase life expectancy. Link to article: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3395188/
+  1. Does Physical Activity Increase Life Expectancy? A Review of the Literature -  The purpose of this article was to synthesize the literature on **life expectancy in relation to physical activity**. A systematic PubMed search on life expectancy in physically active and inactive individuals was performed. In addition, articles comparing life expectancy of athletes compared to that of non athletes were reviewed. The results from this study suggest that regular physical activity increases life expectancy but it is unclear if high intensity sports activities further increase life expectancy. Link to article: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3395188/
 
-    > **Associations of Lifestyle Behavior and Healthy Aging** in Five Latin American and the Caribbean Countries—A 10/66 Population-Based Cohort Study - This research examines the associations of  lifestyle behaviors with healthy aging in Cuba, Dominican Republic, Peru, Mexico and Puerto Rico. Four healthy behaviors were measured: Physical activity, non-smoking, moderate drinking and fruits or vegetables consumption. People engaging in physical activity and consuming fruits or vegetables had increased odds of healthy aging. The findings highlight the importance of awareness of a healthy lifestyle behavior among older people. Link to article: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6266391/
+  2. **Associations of Lifestyle Behavior and Healthy Aging** in Five Latin American and the Caribbean Countries—A 10/66 Population-Based Cohort Study - This research examines the associations of  lifestyle behaviors with healthy aging in Cuba, Dominican Republic, Peru, Mexico and Puerto Rico. Four healthy behaviors were measured: Physical activity, non-smoking, moderate drinking and fruits or vegetables consumption. People engaging in physical activity and consuming fruits or vegetables had increased odds of healthy aging. The findings highlight the importance of awareness of a healthy lifestyle behavior among older people. Link to article: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6266391/
 
-    > **Influence of Individual and Combined Healthy Behaviors on Successful Aging** - This research examined the extent to which healthy behaviors in midlife, separately and in combination, predict successful aging. The authors used a prospective cohort design involving 5100 men and women aged 42-63 years. The findings are that although individual healthy behaviors are moderately associated with successful aging, their combined impact is substantial. Link to the article: https://www.ncbi.nlm.nih.gov/pubmed/23091184
+  3. **Influence of Individual and Combined Healthy Behaviors on Successful Aging** - This research examined the extent to which healthy behaviors in midlife, separately and in combination, predict successful aging. The authors used a prospective cohort design involving 5100 men and women aged 42-63 years. The findings are that although individual healthy behaviors are moderately associated with successful aging, their combined impact is substantial. Link to the article: https://www.ncbi.nlm.nih.gov/pubmed/23091184
 
 3. What is the dataset you'll be working with?  Please include background on who collected the data, where you accessed it, and any additional information we should know about how this data came to be.
 
@@ -32,13 +32,13 @@
 
   > From our resource, the audience should be able to identify the different lifestyle factors that contribute to the long life expectancy of Japanese people. The specific questions that our project can answer using the data we have identified are:
 
-    > How does one’s **different eating styles**, such as fast eating, skipping breakfast and eating midnight snack **contribute to healthy aging**?
+  1. How does one’s **different eating styles**, such as fast eating, skipping breakfast and eating midnight snack **contribute to healthy aging**?
 
-    > How is **physical activity associated with life expectancy**?
+  2. How is **physical activity associated with life expectancy**?
 
-    > Which **lifestyle factor** causes more harm to health **among smoking and alcohol drinking**?
+  3. Which **lifestyle factor** causes more harm to health **among smoking and alcohol drinking**?
 
-    > Which **lifestyle factor** among eating healthy, physical activity, no smoking and alcohol drinking **contributes most to life expectancy**?
+  4. Which **lifestyle factor** among eating healthy, physical activity, no smoking and alcohol drinking **contributes most to life expectancy**?
 
 ## Technical Description
 
