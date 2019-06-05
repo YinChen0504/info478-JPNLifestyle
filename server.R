@@ -6,6 +6,8 @@ library(readxl)
 library(dplyr)
 library(tidyr)
 library(plotly)
+library(ggplot2)
+library(ggrepel)
 
 ## SOURCE IN FILES 
 source("analysis.R")
@@ -73,9 +75,6 @@ server <- function(input, output) {
 #################################################################################################### 
 # RANI
 ####################################################################################################  
-  output$heading <- renderUI({
-    return(h1("Welcome"))
-  })
   
   ## HEALTH ISSUE PLOT 
   output$Graphs <- renderPlot({

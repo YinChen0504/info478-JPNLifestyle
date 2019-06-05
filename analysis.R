@@ -339,16 +339,16 @@ japan_2013[cols] = lapply(japan_2013[cols], as.factor)
 
 # Replace unknown categories and modify USA data
 usa_2013 <- us_data %>% mutate(
-  sleptim1 <- replace(sleptim1, sleptim1 < 7, 2),
-  sleptim1 <- replace(sleptim1, sleptim1 >= 7, 1),
-  sleptim1 <- replace(sleptim1, sleptim1 == 77 | sleptim1 == 99, NA),
-  bphigh4 <- replace(bphigh4, bphigh4 == 2 | bphigh4 == 3 | bphigh4 == 4, 0),
-  bphigh4 <- replace(bphigh4, bphigh4 == 7 | bphigh4 == 9, NA ),
-  diabete3 <- replace(diabete3, diabete3 == 2 | diabete3 == 3 | diabete3 == 4, 0),
-  diabete3 <- replace(diabete3, diabete3 == 7 | diabete3 == 9, NA),
-  drnkany5 <- replace(drnkany5, drnkany5 == 2, 0),
-  drnkany5 <- replace(drnkany5, drnkany5 == 7 | drnkany5 == 9, NA),
-  x.totinda <- replace(x.totinda, x.totinda == 9, NA)
+  sleptim1 = replace(sleptim1, sleptim1 < 7, 2),
+  sleptim1 = replace(sleptim1, sleptim1 >= 7, 1),
+  sleptim1 = replace(sleptim1, sleptim1 == 77 | sleptim1 == 99, NA),
+  bphigh4 = replace(bphigh4, bphigh4 == 2 | bphigh4 == 3 | bphigh4 == 4, 0),
+  bphigh4 = replace(bphigh4, bphigh4 == 7 | bphigh4 == 9, NA ),
+  diabete3 = replace(diabete3, diabete3 == 2 | diabete3 == 3 | diabete3 == 4, 0),
+  diabete3 = replace(diabete3, diabete3 == 7 | diabete3 == 9, NA),
+  drnkany5 = replace(drnkany5, drnkany5 == 2, 0),
+  drnkany5 = replace(drnkany5, drnkany5 == 7 | drnkany5 == 9, NA),
+  x.totinda = replace(x.totinda, x.totinda == 9, NA)
 )
 
 # Assign Male and Female values instead of numbers for sex
@@ -412,8 +412,8 @@ convert_fun <- function(df, metric, country){
   x <- c(metric, 'percentage')
   colnames(df) <- c(metric, 'percentage')
   df$Country <- country
-  df[1] <- ifelse(df[1] == 1, 'Yes', 'No')
-  df$percentage = round(df$percentage * 100,2)
+  df[1] <- ifelse(df[1] == "1.0" | df[1] == 1, 'Yes', 'No')
+  df$percentage = round(df$percentage * 100, 2)
   df
 }
 
