@@ -111,12 +111,20 @@ server <- function(input, output) {
     
   })
   
+  smo_age_gen <- smo_age_gen %>% gather(gender, value, c(2:4))
+  
   # Smoking plot
   output$smo_plot = renderPlotly({
-    smo_data = smo_age_gen %>% select(`Age group`,Country,input$gender)
-    colnames(smo_data)[3] = 'gender'
     
-    plot_ly(smo_data, x=~`Age group`, y=~gender, color=~Country,
+    if (input$smoking_gender == "Both") {
+      smo_data <- smo_age_gen %>% filter(gender == "Both")
+    } else if (input$smoking_gender == "Female") {
+      smo_data <- smo_age_gen %>% filter(gender == "Female")
+    } else {
+      smo_data <- smo_age_gen %>% filter(gender == "Male")
+    }
+    
+    plot_ly(smo_data, x=~`Age group`, y=~value, color=~Country,
             text = '% of smokers',
             type='bar', colors='Set1')    %>%
       layout(

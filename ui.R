@@ -271,7 +271,7 @@ navbarPage("Lifestyle",
                sidebarPanel(
                  
                  conditionalPanel(condition = "input.tabset == 1",
-                                  radioButtons("gender", "Select gender",
+                                  radioButtons("smoking_gender", "Select gender",
                                                c("Both", "Male", "Female")))
                ),
                mainPanel(
