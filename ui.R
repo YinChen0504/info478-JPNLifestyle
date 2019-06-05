@@ -9,6 +9,7 @@ library(RColorBrewer)
 source("analysis.R")
 
 navbarPage("Lifestyle",
+           theme = shinytheme("united"),
            
            # NAV-TAB (OVERVIEW)
            tabPanel("Overview",
@@ -21,7 +22,7 @@ navbarPage("Lifestyle",
                           a("Kaggle", href = "https://www.kaggle.com/kumarajarshi/life-expectancy-who/version/1")),
                         
                         p("Our code can be accessed on ", a("GitHub.", href = "https://github.com/YinChen0504/info478-JPNLifestyle")),
-                        p("Major Libraries used: ", tags$b("Plotly, DPLYR, ShinyThemes")),
+                        p("Major Libraries used: ", tags$b("Plotly, Dplyr, ShinyThemes")),
                         p("Data Reading: ", tags$b("CSV, XLSX"))
                       ),
                       
@@ -58,8 +59,11 @@ navbarPage("Lifestyle",
                                   healthier lifestyle is significant for people to have a longer life expectancy."),
                           
                           br(), 
-                          tags$li("Physical Exercise
-                                  From the daily exercise duration pie charts for both countries, we can see clearly that in 2013, a higher percentage of people in Japan had exercised more than 
+                          tags$li(
+                          tags$ul(
+                          tags$li(tags$b("Physical Exercise"),
+                                  br(),
+                                  "From the daily exercise duration pie charts for both countries, we can see clearly that in 2013, a higher percentage of people in Japan had exercised more than 
                                   30 minutes than that of the US, meaning that people in Japan were more physically active than people in the US. Looking at the physical exercise factor broken 
                                   down by ages, we can see that people in all age groups in Japan were more physically active than that of the US. The most active age group in the US was 70+, 
                                   while for Japan it was the 60-69 year-old age group. In general, older people in both countries exercised more, it is perhaps due to the fact that they had more 
@@ -69,8 +73,9 @@ navbarPage("Lifestyle",
                                   people in the US, there were more people who were physically active in 2013."),
                           
                           br(),
-                          tags$li("Drinking
-                                  From the drinking plot that compares the average number of drinks per day consumed by people in the US and Japan in 2013, we saw that for both females and 
+                          tags$li(tags$b("Drinking"),
+                                  br(),
+                                  "From the drinking plot that compares the average number of drinks per day consumed by people in the US and Japan in 2013, we saw that for both females and 
                                   males, the average number of drinks consumed by the US was greater than that of Japan. The data files we used only contain people with age from 40 to 70+, 
                                   and we divided the ages to age groups, including 40-49, 50-59, 60-69, and 70+. Of all the age groups, both genders in both countries had consumed the 
                                   greatest average number of drinks in the 40-49 year-old age group, the difference between both countries for males was also the greatest in the 40-49 
@@ -79,8 +84,9 @@ navbarPage("Lifestyle",
                                   life expectancy than the US is closely related to consuming less number of drinks on average. "),
                         
                           br(),
-                          tags$li("Smoking
-                                  From the smoking plot, it represents the percentages of smokers by gender and age groups across both Japan and the USA. We saw that when considering both 
+                          tags$li(tags$b("Smoking"),
+                                  br(),
+                                  "From the smoking plot, it represents the percentages of smokers by gender and age groups across both Japan and the USA. We saw that when considering both 
                                   genders, from the age between 40-54, the percentages are very analogous. The highest occurrences/percentages of smokers for both genders was between the 
                                   age group of 50-54 by the U.S with a percentage of 21.98%. But when we are comparing only males under the age of 54, there are higher percentages of men 
                                   in the Japan who are smokers than males in the U.S with a percentage of 18.29%. For the age of 70, males in Japan have higher smoking percentages than 
@@ -90,15 +96,17 @@ navbarPage("Lifestyle",
                                   can say that smoking in general has a great impact on life expectancy."),
                           
                           br(),
-                          tags$li("Sleeping
-                                  The bar plot represents the percentage of population between males and females reporting enough sleep across a diverse set of age groups in the U.S and 
+                          tags$li(tags$b("Sleeping"),
+                                  br(),
+                                  "The bar plot represents the percentage of population between males and females reporting enough sleep across a diverse set of age groups in the U.S and 
                                   Japan. When we are considering both genders, until the age of 64, there are higher percentages of Japanese who reported getting enough sleep than Americans.
                                   For the age group of 55-59 and after 65, the difference is lesser than other age groups. From the graph, it shows that Japanese men have interesting sleeping 
                                   patterns. As age goes up, the percentage of men having enough sleep decreases and their lowest is at age group 55-59. And from the age of 60 and above, the 
                                   percentage steadily increases but the percentages is still less than men in the U.S. For males in America, until the age of 54, the percentages of enough 
                                   sleep is similar but after the age of 54, the percentages begin to increase. But when we are only considering females, there are higher percentages of 
                                   Japanese women across all the age group who reported getting more sleep than females in the U.S. Similar to the case between Japanese males and American 
-                                  males, in the U.S, the percentage of women reporting getting enough sleep increases with age."),
+                                  males, in the U.S, the percentage of women reporting getting enough sleep increases with age.")
+                          )),
                           
                           br(),
                           tags$li("The lifestyle factor that is most likely related to Japan having a longer life expectancy, based off of our data; is exercising more than 30 minutes each day. 
@@ -122,6 +130,50 @@ navbarPage("Lifestyle",
                       )
                     )
            ),
+           
+           # Create a tab panel for displaying a comparison of different 
+           #metrics across Japan and USA
+           
+           tabPanel(
+             "Comparison Across USA and Japan",
+             titlePanel("Lifestlye Habits and Metrics Comparison"),
+             
+             sidebarLayout(
+               sidebarPanel(
+                 checkboxGroupInput("metric", "Select habit/outcome/metric:",
+                                    c("ALL", data_df$metric),
+                                    selected = c("Life.expectancy",'Average BMI')  
+                 )
+               ),
+               mainPanel(
+                 plotOutput("comp_plot"),
+                 tags$i("% drinking alcohol*- For USA, the value corresponds to percentage
+                     who reported drinking alcohol in last 30 days. For Japan, the value
+                            corresponds to percentage who reported drinking alcohol currently."),
+                 br(),
+                 tags$i("% had physical activity**- For USA, the value corresponds to percentage
+                     who reported having a physical activity other than work in last 30 days.
+                     For Japan, the value corresponds to the percentage who reported having a regular
+                            physical activity."),
+                 br(),
+                 h4(tags$b("Summary:")),
+                 p(paste0("The chart above presents comparison of metrics, percentages of people
+                     exhibiting lifestyle habits like smoking, drinking alcohol, having enough 
+                     sleep, having physical activity and percentages of people having 
+                     outcomes like hypertension and diabetes. The factors among which Japan
+                     is better than USA are in red. The factors at which USA is better than
+                     Japan is in green. We can observe than Japan is better than USA in all
+                     the aspects except at physical activity. But, as the survey questions
+                     for this value are formed differently it is necessary to investigate 
+                     further in this area. Excluding that, the major difference can be seen in
+                     percentage of people drinking alcohol followed by percentage of people 
+                     reporting enough sleep. As major difference can be observed in these 
+                     habits, these might be associated with longer life expectancy of Japanese
+                     people."))
+               )
+             )
+           ),
+           
            
            # NEW NAV-TAB (PHYSICAL ACTIVITY)
            tabPanel("Physical Activities",
@@ -186,7 +238,7 @@ navbarPage("Lifestyle",
                     ),
            
            # NEW NAV-TAB (DRINKING COMPARISON)
-           tabPanel("Drinking Comparison",
+           tabPanel("Drinking",
                     titlePanel("Average Alcoholic Drinks Per day"),
                     sidebarLayout(
                       sidebarPanel(
@@ -226,7 +278,6 @@ navbarPage("Lifestyle",
                         ),
                       
                       mainPanel(
-                            "Health Issues",
                             htmlOutput("header"),
                             plotOutput("Graphs"),
                             br(),
@@ -242,52 +293,6 @@ navbarPage("Lifestyle",
                     ),
            
            
-           # Create a tab panel for displaying a comparison of different 
-           #metrics across Japan and USA
-           
-           tabPanel(
-             "Comparison across USA and Japan",
-             titlePanel("Lifestlye habits and metrics comparison"),
-             
-             sidebarLayout(
-               sidebarPanel(
-                 conditionalPanel(condition = "input.tabset == 1",
-                                  checkboxGroupInput("metric", "Select habit/outcome/metric:",
-                                                     c("ALL", data_df$metric),
-                                                     selected = c("Life.expectancy",'Average BMI'))  
-                 )
-               ),
-               mainPanel(
-                     "Comparison across countries",
-                     value = 1, 
-                     plotOutput("comp_plot"),
-                     tags$i("% drinking alcohol*- For USA, the value corresponds to percentage
-                     who reported drinking alcohol in last 30 days. For Japan, the value
-                            corresponds to percentage who reported drinking alcohol currently."),
-                     br(),
-                     tags$i("% had physical activity**- For USA, the value corresponds to percentage
-                     who reported having a physical activity other than work in last 30 days.
-                     For Japan, the value corresponds to the percentage who reported having a regular
-                            physical activity."),
-                     br(),
-                     h4(tags$b("Summary:")),
-                     p(paste0("The chart above presents comparison of metrics, percentages of people
-                     exhibiting lifestyle habits like smoking, drinking alcohol, having enough 
-                     sleep, having physical activity and percentages of people having 
-                     outcomes like hypertension and diabetes. The factors among which Japan
-                     is better than USA are in red. The factors at which USA is better than
-                     Japan is in green. We can observe than Japan is better than USA in all
-                     the aspects except at physical activity. But, as the survey questions
-                     for this value are formed differently it is necessary to investigate 
-                     further in this area. Excluding that, the major difference can be seen in
-                     percentage of people drinking alcohol followed by percentage of people 
-                     reporting enough sleep. As major difference can be observed in these 
-                     habits, these might be associated with longer life expectancy of Japanese
-                     people."))
-               )
-             )
-           ),
-           
            # Create a tab panel for displaying a comparison of smoking habits 
            # across Japan and USA
            tabPanel(
@@ -296,14 +301,10 @@ navbarPage("Lifestyle",
              
              sidebarLayout(
                sidebarPanel(
-                 
-                 conditionalPanel(condition = "input.tabset == 1",
-                                  radioButtons("smoking_gender", "Select gender",
-                                               c("Both", "Male", "Female")))
+                  radioButtons("smoking_gender", "Select gender",
+                              c("Both", "Male", "Female"))
                ),
                mainPanel(
-                     "Percentage of people smoking",
-                     value=1,
                      plotlyOutput("smo_plot"),
                      br(),
                      h4(tags$b("Summary:")),
@@ -321,20 +322,16 @@ navbarPage("Lifestyle",
            # Create a tab panel for displaying a comparison of sleep behavior 
            # across Japan and USA
            tabPanel(
-             "Enough sleep",
-             titlePanel("Sleep behavior across gender and age groups"),
+             "Sleep",
+             titlePanel("Sleep Behavior Across Gender and Age Groups"),
              
              sidebarLayout(
                sidebarPanel(
-                 
-                 conditionalPanel(condition = "input.tabset == 1", 
-                                  radioButtons("sex", "Select gender",
-                                               c("Both", "Male", "Female")))
+                 radioButtons("sex", "Select gender",
+                              c("Both", "Male", "Female"))
                ),
                mainPanel(
-                     "Percentage of people reporting enough sleep",
                      plotlyOutput("sle_plot"),
-                     value=1,
                      br(),
                      h4(tags$b("Summary:")),
                      p(paste0("The charts above represent the percentage of population, males and females
