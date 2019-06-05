@@ -10,14 +10,14 @@ library(scales)
 
 ##################################################################################################################
 # Load Dataset 
-japanese_data <- read_xlsx("../data/lifestyle dataset.xlsx", 2)
+japanese_data <- read_xlsx("../data/japanData.xlsx", 2)
 
 ## Filter for Sex and Amount of replies on "If they have enough sleep" 
 gender_sleep_data <- japanese_data %>% 
   select(Sex, `Enough sleep`)
 
 ## Mutate to change Sex == 1 to MALES
-gender_sleep_data<- gender_sleep_data %>% 
+gender_sleep_data <- gender_sleep_data %>% 
   mutate(
     Sex = replace(Sex, Sex == 1, "Male")
   )
