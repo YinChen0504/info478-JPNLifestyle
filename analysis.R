@@ -332,13 +332,13 @@ japan_2013 <- jpn_data %>% mutate(
   `Alcohol drinking-category` = replace(`Alcohol drinking-category`, 
                                         `Alcohol drinking-category` == 3, 0))
 # Assign levels to columns in data
-cols <- c('Sex','Smoking.status','Enough.sleep','Taking.medication.for.hypertenstion',
-         'Taking.medication.for.diabetes', 'Alcohol.drinking.category', 
-         'Walking.or.physical.activity.category')
+cols <- c('Sex','Smoking status','Enough sleep','Taking medication for hypertenstion',
+         'Taking medication for diabetes', 'Alcohol drinking-category', 
+         'Walking or physical activity-category')
 japan_2013[cols] = lapply(japan_2013[cols], as.factor)
 
 # Replace unknown categories and modify USA data
-usa_2013 = usa %>% mutate(
+usa_2013 <- us_data %>% mutate(
   sleptim1 <- replace(sleptim1, sleptim1 < 7, 2),
   sleptim1 <- replace(sleptim1, sleptim1 >= 7, 1),
   sleptim1 <- replace(sleptim1, sleptim1 == 77 | sleptim1 == 99, NA),
@@ -356,12 +356,12 @@ japan_2013$gender <- ifelse(japan_2013$Sex == 0, 'Female', 'Male')
 usa_2013$sex <- ifelse(usa_2013$sex == 1, 'Male', 'Female')
 
 # Function to create age groups in Japan data
-age_fun = function(x){
+age_fun <-  function(x){
   if (x < 45) {
     y <- '40-44'
   } else if (x >= 45 & x < 50){
     y <- '45-49'
-  } else if (x >= 50 & x <55){
+  } else if (x >= 50 & x < 55){
     y <- '50-54'
   } else if (x >= 55 & x < 60){
     y <- '55-59'
@@ -375,11 +375,11 @@ age_fun = function(x){
 }
 
 #Create age groups in Japan data
-japan_2013$age_group = lapply(japan_2013$Age,age_fun )
+japan_2013$age_group = lapply(japan_2013$Age, age_fun )
 japan_2013$age_group = as.character(japan_2013$age_group)
 
 # Function to assign readable age groups to USA data
-age_fun_usa = function(x){
+age_fun_usa <- function(x){
   if (x == 5) {
     y <- '40-44'
   } else if (x == 6){
@@ -421,7 +421,7 @@ convert_fun <- function(df, metric, country){
 per_sleep_usa <- data.frame(prop.table(svytable(~sleptim1, brfss_design)))
 per_sleep_usa <- convert_fun(per_sleep_usa,'% reported enough sleep','USA')
 #per_sleep_usa
-per_sleep_japan <- data.frame(prop.table(table(japan_2013$Enough.sleep)))
+per_sleep_japan <- data.frame(prop.table(table(japan_2013$`Enough sleep`)))
 per_sleep_japan <- convert_fun(per_sleep_japan, '% reported enough sleep', 'Japan')
 #per_sleep_japan
 per_sleep <- rbind(per_sleep_usa, per_sleep_japan)
@@ -429,18 +429,18 @@ per_sleep <- per_sleep %>% gather('metric', 'status', 1)
 #per_sleep
 
 # Hypertension percentages across USA and Japan
-per_ht_japan <- data.frame(prop.table(table(japan_2013$Taking.medication.for.hypertenstion)))
+per_ht_japan <- data.frame(prop.table(table(japan_2013$`Taking medication for hypertenstion`)))
 per_ht_japan <- convert_fun(per_ht_japan, '% with hypertension', 'Japan')
 #per_ht_japan
 per_ht_usa <- data.frame(prop.table(svytable(~bphigh4, brfss_design)))
-per_ht_usa <- convert_fun(per_ht_usa,'% with hypertension', 'USA')
+per_ht_usa <- convert_fun(per_ht_usa, '% with hypertension', 'USA')
 #per_ht_usa
-per_ht <- rbind(per_ht_usa,per_ht_japan)
+per_ht <- rbind(per_ht_usa, per_ht_japan)
 per_ht <- per_ht %>% gather('metric', 'status', 1)
 #per_ht
 
 # Diabetes percentages across USA and Japan
-per_dia_japan <- data.frame(prop.table(table(japan_2013$Taking.medication.for.diabetes)))
+per_dia_japan <- data.frame(prop.table(table(japan_2013$`Taking medication for diabetes`)))
 per_dia_japan <- convert_fun(per_dia_japan, '% with diabetes', 'Japan')
 #per_dia_japan
 per_dia_usa <- data.frame(prop.table(svytable(~diabete3, brfss_design)))
@@ -451,7 +451,7 @@ per_dia <- per_dia %>% gather('metric', 'status', 1)
 #per_dia
 
 # Alcohol drinking percentages across USA and Japan
-per_alc_japan <- data.frame(prop.table(table(japan_2013$Alcohol.drinking.category)))
+per_alc_japan <- data.frame(prop.table(table(japan_2013$`Alcohol drinking-category`)))
 per_alc_japan <- convert_fun(per_alc_japan, '% drinking alcohol*', 'Japan')
 #per_alc_japan
 per_alc_usa <- data.frame(prop.table(svytable(~drnkany5, brfss_design)))
@@ -465,7 +465,7 @@ per_alc <- per_alc %>% gather('metric', 'status', 1)
 per_smo_usa <- data.frame(prop.table(svytable(~x.rfsmok3, brfss_design)))
 per_smo_usa <- convert_fun(per_smo_usa, '% smoking','USA')
 #per_smo_usa
-per_smo_japan <- data.frame(prop.table(table(japan_2013$Smoking.status)))
+per_smo_japan <- data.frame(prop.table(table(japan_2013$`Smoking status`)))
 per_smo_japan <- convert_fun(per_smo_japan, '% smoking', 'Japan')
 #per_smo_japan
 per_smo <- rbind(per_smo_japan, per_smo_usa)
@@ -475,7 +475,7 @@ per_smo <- per_smo %>% gather('metric', 'status', 1)
 per_phy_usa <- data.frame(prop.table(svytable(~x.totinda, brfss_design)))
 per_phy_usa <- convert_fun(per_phy_usa, '% had physical activity**', 'USA' )
 #per_phy_usa
-per_phy_japan <- data.frame(prop.table(table(japan_2013$Walking.or.physical.activity.category)))
+per_phy_japan <- data.frame(prop.table(table(japan_2013$`Walking or physical activity-category`)))
 per_phy_japan <- convert_fun(per_phy_japan,'% had physical activity**', 'Japan')
 #per_phy_japan
 per_phy <- rbind(per_phy_japan, per_phy_usa)
@@ -552,13 +552,13 @@ smo_usa_gen = smo_usa_gen %>% filter(x.rfsmok3==1) %>% select(-c(x.rfsmok3))
 smo_age_gen_usa = left_join(smo_age_usa, smo_usa_gen)
 smo_age_gen_usa$country = 'USA'
 colnames(smo_age_gen_usa) = c('Age group', 'Both', 'Female','Male','Country')
-smo_age_gen_usa
+#smo_age_gen_usa
 
 #smoking percentages across age and gender in Japan
-smo_age_japan = data.frame(prop.table(table(japan_2013$Smoking.status,
+smo_age_japan = data.frame(prop.table(table(japan_2013$`Smoking status`,
                                             japan_2013$age_group),margin=2))
 smo_age_japan = smo_age_japan %>% filter(Var1 == 1) %>% select(-c(Var1))
-smo_gen_japan = data.frame(prop.table(table(japan_2013$Smoking.status,japan_2013$age_group,
+smo_gen_japan = data.frame(prop.table(table(japan_2013$`Smoking status`, japan_2013$age_group,
                                             japan_2013$gender), margin = 2))
 smo_gen_japan = smo_gen_japan %>% filter(Var1 == 1) %>% select(-c(Var1))
 smo_gen_japan = smo_gen_japan %>% spread(Var3,Freq)
@@ -593,12 +593,12 @@ colnames(sle_age_gen_usa) = c('Age group', 'Both', 'Female','Male','Country')
 sle_age_gen_usa
 
 #enough sleep percentages across age and gender in Japan
-sle_age_japan = data.frame(prop.table(table(japan_2013$Enough.sleep,
+sle_age_japan = data.frame(prop.table(table(japan_2013$`Enough sleep`,
                                             japan_2013$age_group),margin=2))
-sle_age_japan = sle_age_japan %>% filter(Var1 == 1) %>% select(-c(Var1))
-sle_gen_japan = data.frame(prop.table(table(japan_2013$Enough.sleep,japan_2013$age_group,
+sle_age_japan <- sle_age_japan %>% filter(Var1 == "1.0") %>% select(-c(Var1))
+sle_gen_japan = data.frame(prop.table(table(japan_2013$`Enough sleep`,japan_2013$age_group,
                                             japan_2013$gender), margin = 2))
-sle_gen_japan = sle_gen_japan %>% filter(Var1 == 1) %>% select(-c(Var1))
+sle_gen_japan = sle_gen_japan %>% filter(Var1 == "1.0") %>% select(-c(Var1))
 sle_gen_japan = sle_gen_japan %>% spread(Var3,Freq)
 sle_age_gen_japan = left_join(sle_age_japan,sle_gen_japan)
 sle_age_gen_japan$country = 'Japan'
