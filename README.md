@@ -4,7 +4,7 @@
 
 1. What is the purpose of your research project?
 
-  > The purpose of our research project is to understand how and **why the Japanese are able to live so long and have the highest life expectancy in the whole entire world**. The dataset that we have found contains the lifestyle of middle-aged and elderly people of Japanese descent. Through health checkups and visits to the doctors, they were able to gather lifestyle and personal details such as their BMI, the diet of said participants and any occurrences of health issues. Lifestyle factors include any instances of fast eating, skipping breakfast, eating a midnight snack, smoking, alcohol drinking, doing exercise, active lifestyle, and biophysical status were age, height, weight, BMI, blood components, and medical examination history. After we filter through the dataset and do some calculations, we will figure out as to what we as humans can do to live a healthier life through our lifestyle.
+  > The purpose of our research project is to understand how and **why the Japanese are able to live so long and have the highest life expectancy in the whole entire world**. The dataset that we have found contains the lifestyle of middle-aged and elderly people of Japanese descent. Here, lifestyle is considered as habits like smoking, drining alcohol, physical activity, sleep pattern etc. Through health checkups and visits to the doctors, they were able to gather lifestyle and personal details such as their BMI, the diet of said participants and any occurrences of health issues.  Biophysical status captured were age, height, weight, BMI, blood components, and medical examination history. We will compare these habits with those from USA (whose life expectancy is lesser than Japan) to see how Japanese are doing better. BRFSS survey data has questions similar to the Japan's dataset and this makes comparison of lifestyle easier. After we filter through the dataset and do some calculations, we will figure out as to what we as humans can do to live a healthier life through our lifestyle.
 
 2. What other research has been done in this area? Make sure to include 3+ links to related works.
 
@@ -22,25 +22,24 @@
 
 3. What is the dataset you'll be working with?  Please include background on who collected the data, where you accessed it, and any additional information we should know about how this data came to be.
 
-  > Our dataset consists of data collected from **middle-aged and elderly Japanese over a span of three years through health check-ups between the years of 2012 and 2014**. During this time the life expectancy of Japanese people is 83.10 (2012) and 83.59 (2014). The people who collected the data had a hypothesis that assumed two hours or lower duration between dinner and bedtime can have an influence on increasing the HbA1c level. So the people who collected the data documented their lifestyle factors and miscellaneous information. Lifestyle factors include two-hour duration between dinner and bedtime, fast eating, skipping breakfast, eating a midnight snack, smoking, alcohol drinking, doing exercise, active lifestyle, and biophysical status were age, height, weight, BMI, waist circumference, blood components, and medical examination history. The result of their hypothesis is that The duration between dinner and bedtime did not significantly affect on HbA1c level. The finding was variated by some lifestyle factors such as smoking and alcohol drinking and BMI status. Rather than the duration of dinner and bedtime, people should pay more attention to healthy components of last and adequate sleeping time for maintaining a stable metabolic process.
+  > Our dataset consists of data collected from **middle-aged and elderly Japanese over a span of three years through health check-ups between the years of 2012 and 2014**. During this time the life expectancy of Japanese people is 83.10 (2012) and 83.59 (2014). The people who collected the data had a hypothesis that assumed two hours or lower duration between dinner and bedtime can have an influence on increasing the HbA1c level. So the people who collected the data documented their lifestyle factors and miscellaneous information. Lifestyle factors include two-hour duration between dinner and bedtime, fast eating, skipping breakfast, eating a midnight snack, smoking, alcohol drinking, doing exercise, active lifestyle, and biophysical status were age, height, weight, BMI, waist circumference, blood components, and medical examination history. The result of their hypothesis is that The duration between dinner and bedtime did not significantly affect on HbA1c level. The finding was variated by some lifestyle factors such as smoking and alcohol drinking and BMI status. Rather than the duration of dinner and bedtime, people should pay more attention to healthy components of last and adequate sleeping time for maintaining a stable metabolic process.    
+  The dataset used for analysis of USA lifestyle is taken from *Behavioral Risk Factor Surveillance System*(BRFSS) for the year 2013. BRFSS is a system of health-realted *telephone surveys* that collect data about US residents regarding their health related risk behaviours, chronic health conditions and use of preventive services. Sampling weights are attached to the data. 
 
 4. Who is your target audience?  Depending on the domain of your data, there may be a variety of audiences interested in using the dataset. You should hone in on one of these audiences.
 
-  > The target audience for our research can **extend around the world**. It is a known fact that Japan has the highest life expectancy, so it would be wise for the rest of the world to observe them and figure out their secrets if they would like to live a longer life. But our goal is to help the people at home first, so our target is the people at the University of Washington. If we are able to figure out some ground-breaking information, we hope it will be able to help DAWGS live a happy healthy life!
+  > The target audience for our research can **extend around the world**. It is a known fact that Japan has higher life expectancy than most countries, so it would be wise for the rest of the world to observe them and figure out their secrets if they would like to live a longer life. But our goal is to help the people at home first, so our target is the people at the University of Washington. If we are able to figure out some ground-breaking information, we hope it will be able to help DAWGS live a happy healthy life!
 
 5. What should your audience learn from your resource? Please consider specific questions that your project can answer using the data you have identified (that are related to the overarching purpose)
 
   > From our resource, the audience should be able to identify the different lifestyle factors that contribute to the long life expectancy of Japanese people. The specific questions that our project can answer using the data we have identified are:
 
-  >How does one’s **different eating styles**, such as fast eating, skipping breakfast and eating midnight snack **contribute to healthy aging**?
-
-  > How is **physical activity associated with life expectancy**?
-
-  > Which **lifestyle factor** causes more harm to health **among smoking and alcohol drinking**?
-
-  > Which **lifestyle factor** among eating healthy, physical activity, no smoking and alcohol drinking **contributes most to life expectancy**?
-
-## Technical Description
+  > How do **health outcomes** (including diabetes, hypertension, BP) compare across the US and Japan?  
+  
+  > How do different **lifestyle factors** (including smoking, drinking, sleeping patterns, physical activities) vary among people in the US and Japan?  
+  
+  > Which **lifestyle factor** is most likely related to Japan having a longer life expectancy than the US?  
+  
+ ## Technical Description
 
 1. What will be the format of your final product (Shiny app, HTML page, compiled .Rmd file, etc)?
 
