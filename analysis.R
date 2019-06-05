@@ -45,17 +45,17 @@ labs <- c(
 )
 
 usa_data_2013_drink_amount$age_group <-
-  as.character(cut(usa_data_2013_drink_amount$age, breaks = c(
+  cut(usa_data_2013_drink_amount$age, breaks = c(
     seq(5, 11, by = 2),
     Inf
-  ), labels = labs, right = FALSE))
+  ), labels = labs, right = FALSE)
 
 ##########################################################################################
 # JAPAN 
 # SELECTS SEX, AGE AND AVERAGE DRINKS COLUMN 
 japan_data_2013_drink_amount <- jpn_data %>%
-  select(Sex, Age,`Alcohol amount-category`) %>%
-  filter(!is.na(`Alcohol amount-category`))
+  select(Sex, Age, `Alcohol amount-category`) %>%
+  filter(`Alcohol amount-category` != "NA")
 
 
 colnames(japan_data_2013_drink_amount) <- c("sex", "age", "avg_drinks")
@@ -65,6 +65,9 @@ japan_data_2013_drink_amount$sex[japan_data_2013_drink_amount$sex == 1] <- "Male
 
 japan_data_2013_drink_amount$country <- "Japan"
 
+japan_data_2013_drink_amount$avg_drinks <- as.numeric(japan_data_2013_drink_amount$avg_drinks)
+
+
 # ADDS THE AGE-GROUP COLUMN 
 japan_labs <- c(
   paste(seq(40, 60, by = 10), seq(49, 69, by = 10), sep = "-"),
@@ -72,11 +75,9 @@ japan_labs <- c(
 )
 
 japan_data_2013_drink_amount$age_group <-
-  as.character(
-    cut(japan_data_2013_drink_amount$age,
+  cut(japan_data_2013_drink_amount$age,
         breaks = c(seq(40, 70, by = 10), Inf),
         labels = labs, right = FALSE
-    )
   )
 
 ##########################################################################################

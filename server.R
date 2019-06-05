@@ -56,17 +56,17 @@ server <- function(input, output) {
                          "Please select an option"))
    
     ## FILTER DATA (AGE-GROUP) / IF-STATEMENT (FOR BOTH)
-    data <- data_2013_drink_amount %>% filter(age_group == input$age_group)
+    by_age <- data_2013_drink_amount %>% filter(age_group == input$age_group)
     if (input$gender != "Both") {
-      data <- data %>% filter(sex == input$gender)
+      by_age <- by_age %>% filter(sex == input$gender)
     }
     
     ## PLOT A SCATTER PLOT 
-    plot_ly(data = data, x = ~age_group, y = ~avg_drinks, type = "scatter",
+    plot_ly(data = by_age, x = ~age_group, y = ~avg_drinks, type = "scatter",
             mode = "markers", color = ~country, colors = brewer.pal(7, "Paired")) %>%
       layout(
-        title = str_title_case(paste0("Relationship Between Age and Average Number of Drinks Per Day")),
-        yaxis = list(title = str_title_case(paste0("Number of drinks"))), xaxis = list(title = "Age")
+        title = ("Relationship Between Age and Average Number of Drinks Per Day"),
+        yaxis = list(title = "Number of drinks"), xaxis = list(title = "Age")
       )
   })
   

@@ -40,9 +40,9 @@ navbarPage("Lifestyle",
                         
                         h3("Central Questions"),
                         tags$ul(
-                          tags$li("How do health outcomes (including diabetes, hypertension, BP) compare across the US and Japan?"),
-                          tags$li("How do different lifestyle factors (including smoking, drinking, sleeping patterns, physical activities) vary among people in the US and Japan?"),
-                          tags$li("Which lifestyle factor is most likely related to Japan having a longer life expectancy than the US?")
+                          tags$li("How do health outcomes (including diabetes, hypertension, blood pressure) compare across the United States and Japan?"),
+                          tags$li("How do different lifestyle factors (including smoking, drinking, sleeping patterns, physical activities) vary among people in the United States and Japan?"),
+                          tags$li("Which lifestyle factor is most likely related to Japan having a longer life expectancy than the United States?")
                         ),
                         br(),
                         
@@ -61,8 +61,8 @@ navbarPage("Lifestyle",
            ),
            
            # NEW NAV-TAB (PHYSICAL ACTIVITY)
-           tabPanel("Physical Activity",
-                    titlePanel("Physical Activites"),
+           tabPanel("Physical Activities",
+                    titlePanel("Physical Activities"),
                     
                     sidebarLayout(
                       sidebarPanel(
