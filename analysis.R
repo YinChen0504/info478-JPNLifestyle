@@ -513,7 +513,7 @@ build_comp_plot <- function(data_df) {
   
   left_label <- paste(data_df$metric, data_df$USA,sep = ", ")
   right_label <- paste(data_df$metric, data_df$Japan,sep = ", ")
-  data_df$class <- ifelse(data_df$metric == '% had physical activity**', "green", "red")
+  data_df$class <- ifelse(data_df$metric == '% exercised more than 30 min**', "green", "red")
   
   p <- ggplot(data_df) + geom_segment(aes(x=1, xend=2, y=USA, yend=Japan, col=class),
                                      size=.75, show.legend=F) + 
@@ -522,7 +522,7 @@ build_comp_plot <- function(data_df) {
     scale_color_manual(labels = c("Up", "Down"), 
                        values = c("green"="#00ba38", "red"="#f8766d")) +  # color of lines
     labs(x="", y="") +  # Axis labels
-    ggtitle('Lifestyle habits and metrics comparison')+
+    ggtitle('Lifestyle Habits and Metrics Comparison')+
     xlim(0, 3) + ylim(0,90)  # X and Y axis limits
   
   # Add texts

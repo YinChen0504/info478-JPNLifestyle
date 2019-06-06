@@ -119,6 +119,14 @@ navbarPage("Lifestyle",
                                   In conclusion, our data and calculations shows that exercising is very important and is the cause of higher life expectancies for Japanese people in the year of 2013.")
                         ),
                         
+                        h3("Methods Used"),
+                        p("We collected and used 3 files to answer our questions, including data files for US, Japan and world for year 2013. Because the files were relatively big,
+                           we cleaned the data first by taking out variables we needed for analysis and used those to create new data frames. In order to find common variables that
+                           could be used to perform analysis for both the US and Japan, we examined the data carefully and did some conversion between numbers and strings, as well
+                           as taking care of data that were missing, eventually the data became appropriate to use. After cleaning up the data values, we still had to reformat the
+                           data frames so they could be used to plot. We did a lot of percentage calculation, we also utilized the survey package from R by using the svytable function."),
+                        br(),
+                        
                         h3("Project Creators"),
                         tags$ul(
                           tags$li("Rani Chang"),
