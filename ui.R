@@ -222,7 +222,7 @@ navbarPage("Lifestyle",
                             plotlyOutput("exercise_overview_plot"),
                             br(),
 
-                            h4(tags$b("Summary")),
+                            h4(tags$b("Summary:")),
                             p(paste0("The charts show that in 2013 in the United States, only 8.38% of the people exercised more than 30 ",
                                      "minutes per day on average, while the rest exercised less than 30 minutes or did not exercise at all. ",
                                      "Whereas in Japan, 47.3% exercised more than 30 minutes per day, and 52.7% exercised less than 30 ",
