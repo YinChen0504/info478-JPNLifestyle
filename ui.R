@@ -6,8 +6,10 @@ library(shinythemes)
 library(lettercase)
 library(RColorBrewer)
 
+# SOURCE IN FILES 
 source("analysis.R")
 
+# NAVBAR
 navbarPage("Lifestyle",
            theme = shinytheme("united"),
            
@@ -128,10 +130,10 @@ navbarPage("Lifestyle",
                         )
                       )
                     )
-           ),
+                    ),
            
-           # Create a tab panel for displaying a comparison of different 
-           #metrics across Japan and USA
+           # CREATE A TAB PANEL FOR DISPLAYING A COMPARISON OF DIFFERENT
+           # METRICS ACROSS JAPAN AND THE US
            
            tabPanel(
              "Comparison Across USA and Japan",
@@ -169,9 +171,9 @@ navbarPage("Lifestyle",
                      reporting enough sleep. As major difference can be observed in these 
                      habits, these might be associated with longer life expectancy of Japanese
                      people."))
+                 )
                )
-             )
-           ),
+             ),
            
            
            # NEW NAV-TAB (PHYSICAL ACTIVITY)
@@ -252,13 +254,10 @@ navbarPage("Lifestyle",
                         plotlyOutput("scatter"),
                         br(),
                         h4(tags$b("Summary:")),
-                        p("From the chart, we can see that people of either gender in the US had
-                          consumed a higher number of drinks on average compared to that of
-                          Japan in any given age group in 2013. Of all the age groups for both
-                          genders, the difference in the number of drinks of the 40 - 49 year
-                          old age group between the two countries was the greatest. The average
-                          number of drinks that were consumed by either gender for both
-                          countries was also the greatest in the 40 - 49 year old age group.")
+                        p("From the chart, we can see that people of either gender in the US had consumed a higher number of drinks on average compared to that of
+                        Japan in any given age group in 2013. Of all the age groups for both genders, the difference in the number of drinks of the 40 - 49 year
+                        old age group between the two countries was the greatest. The average number of drinks that were consumed by either gender for both
+                        countries was also the greatest in the 40 - 49 year old age group.")
                         )
                       )
                     ),
@@ -277,23 +276,22 @@ navbarPage("Lifestyle",
                         ),
                       
                       mainPanel(
-                            htmlOutput("header"),
-                            plotOutput("Graphs"),
-                            br(),
-                            h4(tags$b("Summary:")),
-                            p("These graphs show the outcome between America and Japan. There are three health issues to choose from; Hypertension, Diabetes, and Blood Pressure.
-                            There is a option of selecting one of the health issues just by selecting the dropdown menu on the left side. From each graph, you notice that in each graph 
-                            Japan tended to have answered `yes` less than Americans. When people answer yes, it means that they have been told by a professional doctor that they have 
-                            symptoms or do have these specific health issues. It was clear that on each graph, Japanese people answered more `No` than Americans. From all of this, we 
-                            can say that, Japanese people live healthier lives and this may be due to the fact that they drink less and smoke less.")
-
+                        htmlOutput("header"),
+                        plotOutput("Graphs"),
+                        br(),
+                        h4(tags$b("Summary:")),
+                        p("These graphs show the outcome between America and Japan. There are three health issues to choose from; Hypertension, Diabetes, and Blood Pressure.
+                        There is a option of selecting one of the health issues just by selecting the dropdown menu on the left side. From each graph, you notice that in each graph 
+                        Japan tended to have answered `yes` less than Americans. When people answer yes, it means that they have been told by a professional doctor that they have 
+                        symptoms or do have these specific health issues. It was clear that on each graph, Japanese people answered more `No` than Americans. From all of this, we 
+                        can say that, Japanese people live healthier lives and this may be due to the fact that they drink less and smoke less.")
                         )
                       )
                     ),
            
-           
-           # Create a tab panel for displaying a comparison of smoking habits 
-           # across Japan and USA
+           # NEW TAB-PANLE (SMOKING HABITS)
+           # CREATE A TAB PANEL FOR DISPLAYING A COMPARISON OF SMOKING HABITS ACROSS
+           # JAPAN AND USA
            tabPanel(
              "Smoking",
              titlePanel("Smoking across gender and age groups"),
@@ -303,28 +301,24 @@ navbarPage("Lifestyle",
                   radioButtons("smoking_gender", "Select gender",
                               c("Both", "Male", "Female"))
                ),
+               
                mainPanel(
-                     plotlyOutput("smo_plot"),
-                     br(),
-                     h4(tags$b("Summary:")),
-                     p(paste0("The charts above represent the percentage of smokers, male smokers 
-                     and female smokers across different age groups in Japan and USA. When considering 
-                     both male and female, from 40 to 54, the percentages are similar. But from age 55,
-                     percentage of smokers decreases more steeply in Japan than USA. When considering 
-                     only male smokers, higher percentages of men are smokers in Japan than in
-                     USA, the difference increasing from 40 to 54 years. In the age group 50-54, 
-                     48% of males in Japan reported smoking and is the highest. While only 24% of men in 
-                     USA reported smoking in that age group.From age 55, the difference reduced and also the 
-                     percentages males smoking decreased. When considering only females, higher proportion of 
-                     women smoked in USA across all age groups. The highest difference can be 
-                     observed in 50-54 age group. In Japan after 59 years and in USA after 54 years, the 
-                     percentages decreased."))
+                 plotlyOutput("smo_plot"),
+                 br(),
+                 h4(tags$b("Summary:")),
+                 p(paste0("The charts above represent the percentage of smokers, male smokers and female smokers across different age groups in Japan and USA. When considering 
+                 both male and female, from 40 to 54, the percentages are similar. But from age 55, percentage of smokers decreases more steeply in Japan than USA. When considering 
+                 only male smokers, higher percentages of men are smokers in Japan than in USA, the difference increasing from 40 to 54 years. In the age group 50-54, 
+                 48% of males in Japan reported smoking and is the highest. While only 24% of men in USA reported smoking in that age group.From age 55, the difference reduced and also the 
+                 percentages males smoking decreased. When considering only females, higher proportion of women smoked in USA across all age groups. The highest difference can be observed 
+                 in 50-54 age group. In Japan after 59 years and in USA after 54 years, the percentages decreased."))
+                 )
                )
-             )
-           ),
+             ),
            
-           # Create a tab panel for displaying a comparison of sleep behavior 
-           # across Japan and USA
+           # NEW TAB-PANEL (SLEEP BEHAVIOR)
+           # CREATE A TAB PANEL FOR DISPLAYING A COMPARISON OF SLEEP BEHAVIOR ACROSS 
+           # JAPAN AND USA
            tabPanel(
              "Sleep",
              titlePanel("Sleep Behavior Across Gender and Age Groups"),
@@ -335,27 +329,19 @@ navbarPage("Lifestyle",
                               c("Both", "Male", "Female"))
                ),
                mainPanel(
-                     plotlyOutput("sle_plot"),
-                     br(),
-                     h4(tags$b("Summary:")),
-                     p(paste0("The charts above represent the percentage of population, males and females
-                     reporting enough sleep across different age groups in Japan and USA.
-                     When considering both males and females, until age 64 higher 
-                     percentage of Japanese reported enough sleep than Americans.
-                     For the age group 55-59 and after 65 years the difference is lesser than
-                     other age groups. The pattern is fluctuating for Japanese men, their lowest is 64.1%
-                     across age group 55-59 and highest is 75% across age group 60-64.For American males, 
-                     the percentage is steadily increasing from age 45. Both countries' males have similar
-                     sleep percentages across age groups. Higher percentages of females reported enough 
-                     sleep in Japan than USA across all age groups. The percentages are fluctuating across
-                     Japanese women with their lowest of 67.16% in 55-59 age group and highest of 79.31% in
-                     40-44 age group. In USA, after 54 years, the percentage of women reported enough sleep
-                     steadily increases."))
+                 plotlyOutput("sle_plot"),
+                 br(),
+                 h4(tags$b("Summary:")),
+                 p(paste0("The charts above represent the percentage of population, males and females reporting enough sleep across different age groups in Japan and USA.
+                 When considering both males and females, until age 64 higher percentage of Japanese reported enough sleep than Americans.
+                 For the age group 55-59 and after 65 years the difference is lesser than other age groups. The pattern is fluctuating for Japanese men, their lowest is 64.1%
+                 across age group 55-59 and highest is 75% across age group 60-64.For American males, the percentage is steadily increasing from age 45. Both countries' males have similar
+                 sleep percentages across age groups. Higher percentages of females reported enough sleep in Japan than USA across all age groups. The percentages are fluctuating across
+                 Japanese women with their lowest of 67.16% in 55-59 age group and highest of 79.31% in 40-44 age group. In USA, after 54 years, the percentage of women reported enough 
+                 sleep steadily increases."))
+                 )
                )
              )
-           )
-           
-           
            )
 
 

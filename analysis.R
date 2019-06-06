@@ -301,14 +301,34 @@ full_hypertension <- full_join(japanHypertension, usaHypertension)
 full_diabetes <- full_join(japanDiabetes, usaDiabetes)
 full_bp <- full_join(japanBP, usaBP)
 
+japan_hypertension_total <- full_hypertension[1, "Total"] + full_hypertension[2, "Total"]
+usa_Hypertension_total <- full_hypertension[3, "Total"] + full_hypertension[4, "Total"]
+
+full_hypertension[1, "Total"] <- full_hypertension[1, "Total"] / japan_hypertension_total * 100
+full_hypertension[2, "Total"] <- full_hypertension[2, "Total"] / japan_hypertension_total * 100
+full_hypertension[3, "Total"] <- full_hypertension[3, "Total"] / usa_Hypertension_total * 100
+full_hypertension[4, "Total"] <- full_hypertension[4, "Total"] / usa_Hypertension_total * 100
+
+japan_diabetes_total <- full_diabetes[1, "Total"] + full_diabetes[2, "Total"]
+usa_diabetes_total <- full_diabetes[3, "Total"] + full_diabetes[4, "Total"]
+
+full_diabetes[1, "Total"] <- full_diabetes[1, "Total"] / japan_diabetes_total  * 100
+full_diabetes[2, "Total"] <- full_diabetes[2, "Total"] / japan_diabetes_total  * 100
+full_diabetes[3, "Total"] <- full_diabetes[3, "Total"] / usa_diabetes_total * 100
+full_diabetes[4, "Total"] <- full_diabetes[4, "Total"] / usa_diabetes_total * 100
+
+japan_bp_total <- full_bp[1, "Total"] + full_bp[2, "Total"]
+usa_bp_total <- full_bp[3, "Total"] + full_bp[4, "Total"]
+
+full_bp[1, "Total"] <- full_bp[1, "Total"] / japan_bp_total * 100
+full_bp[2, "Total"] <- full_bp[2, "Total"] / japan_bp_total * 100
+full_bp[3, "Total"] <- full_bp[3, "Total"] / usa_bp_total * 100
+full_bp[4, "Total"] <- full_bp[4, "Total"] / usa_bp_total * 100
+
 list.of.data.frames = list(data.frame(full_hypertension), data.frame(full_diabetes), data.frame(full_bp))
 
-## MERGE THEM TOGETHER
-merged_dataFrame = Reduce(function(...) merge(..., all = T), list.of.data.frames)
-merged_dataFrame_data <- melt(merged_dataFrame, id = c("Country", "Total"))
-
 ## FOR INPUT-ID 
-Issues <- unique(merged_dataFrame_data$variable)
+Issues <- c("Hypertension", "Diabetes", "Blood Pressure")
 
 #######################################################################################################################################################################################
 
