@@ -127,6 +127,7 @@ navbarPage("Lifestyle",
                                   erodes its ability to function well. Thus it can can lead to liver disease or heart failure, which can result in death and lower the average life expectancy of
                                   the population.")
                         ),
+                        br(),
                         
                         h3("Methods Used"),
                         p("We collected and used 3 files to answer our questions, including data files for US, Japan and world for year 2013. Because the files were relatively big,
