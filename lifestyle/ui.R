@@ -88,23 +88,22 @@ navbarPage("Lifestyle",
                                   br(),
                                   "From the smoking plot, it represents the percentages of smokers by gender and age groups across both Japan and the USA. We saw that when considering both 
                                   genders, from the age between 40-54, the percentages are very analogous. The highest occurrences/percentages of smokers for both genders was between the 
-                                  age group of 50-54 by the U.S with a percentage of 21.98%. But when we are comparing only males under the age of 54, there are higher percentages of men 
-                                  in the Japan who are smokers than males in the U.S with a percentage of 18.29%. For the age of 70, males in Japan have higher smoking percentages than 
-                                  males in the US, but for females in the U.S, they have higher smoking percentages than women in Japan; a 5 % difference. From the age of 55, the difference
-                                  between smokers in Japan and the USA begin to reduce, but when only considering females, there are higher proportions of women who smoke across age groups. 
-                                  The graph shows us that at younger ages, people in Japan and the U.S tend to smoke more but as time goes on, the percentages begin to decrease. Overall, we 
-                                  can say that smoking in general has a great impact on life expectancy."),
+                                  age group of 50-54 by the U.S with a percentage of 21.98%. But when we are comparing only males, higher percentages of men in Japan are smokers than males
+                                  in the U.S with their highest percentage of 48.39% in age group 50-54. Across all age groups, males in Japan have higher smoking percentages than 
+                                  males in the US, but for females in the U.S, they have higher smoking percentages than women in Japan. From the age of 55, the percentage of female smokers 
+                                  in Japan and the USA begin to reduce, but reduces more among Japanese women.The graph shows us that at younger ages, people in Japan and the U.S tend to smoke 
+                                  more but as time goes on, the percentages begin to decrease. Overall, we can say that smoking in general has a great impact on life expectancy."),
                           
                           br(),
                           tags$li(tags$b("Sleeping"),
                                   br(),
                                   "The bar plot represents the percentage of population between males and females reporting enough sleep across a diverse set of age groups in the U.S and 
                                   Japan. When we are considering both genders, until the age of 64, there are higher percentages of Japanese who reported getting enough sleep than Americans.
-                                  For the age group of 55-59 and after 65, the difference is lesser than other age groups. From the graph, it shows that Japanese men have interesting sleeping 
-                                  patterns. As age goes up, the percentage of men having enough sleep decreases and their lowest is at age group 55-59. And from the age of 60 and above, the 
-                                  percentage steadily increases but the percentages is still less than men in the U.S. For males in America, until the age of 54, the percentages of enough 
-                                  sleep is similar but after the age of 54, the percentages begin to increase. But when we are only considering females, there are higher percentages of 
-                                  Japanese women across all the age group who reported getting more sleep than females in the U.S. Similar to the case between Japanese males and American 
+                                  For the age group of 55-59 and after 65, the difference is lesser than other age groups. From the graph, it shows that Japanese men have fluctuating sleeping 
+                                  patterns. In the age group 60-64, highest percentage of men reported enough sleep at 75% and their lowest is at age group 55-59
+                                  (64.1%). From 65 years, the percentages are slightly less than men in the U.S. For males in America, until the age of 54, the percentages of enough 
+                                  sleep is similar but after the age of 54, the percentages begin to increase. But when we are considering only females, higher percentages of 
+                                  Japanese women across all the age groups reported getting more sleep than females in the U.S. Similar to the case between Japanese males and American 
                                   males, in the U.S, the percentage of women reporting getting enough sleep increases with age.")
                           )),
                           
@@ -312,9 +311,14 @@ navbarPage("Lifestyle",
                      and female smokers across different age groups in Japan and USA. When considering 
                      both male and female, from 40 to 54, the percentages are similar. But from age 55,
                      percentage of smokers decreases more steeply in Japan than USA. When considering 
-                     only male smokers until age 54, higher percentages of men are smokers in Japan than
-                     USA. From age 55, the difference reduced. When considering only females, higher 
-                              proportion of women smoked across all age groups."))
+                     only male smokers, higher percentages of men are smokers in Japan than in
+                     USA, the difference increasing from 40 to 54 years. In the age group 50-54, 
+                     48% of males in Japan reported smoking and is the highest. While only 24% of men in 
+                     USA reported smoking in that age group.From age 55, the difference reduced and also the 
+                     percentages males smoking decreased. When considering only females, higher proportion of 
+                     women smoked in USA across all age groups. The highest difference can be 
+                     observed in 50-54 age group. In Japan after 59 years and in USA after 54 years, the 
+                     percentages decreased."))
                )
              )
            ),
@@ -339,17 +343,14 @@ navbarPage("Lifestyle",
                      When considering both males and females, until age 64 higher 
                      percentage of Japanese reported enough sleep than Americans.
                      For the age group 55-59 and after 65 years the difference is lesser than
-                     other age groups. Japanese men have interesting sleep pattern. As age 
-                     increases, the percentage of men having enough sleep decreases and their 
-                     lowest is at age group 55-59. From age 60 onwards, the percentage steadily 
-                     increases but is lesser than men of USA. For American males, until 
-                     age 54, the percentage having enough sleep is similar. But from 54 onwards,
-                     the percentage increases. When considering only females, higher 
-                     percentage of Japanese women across all age groups reported enough sleep 
-                     than American women. Women across age group 55-59 reported lower percentages
-                     than neighboring age groups in Japan. From 65 years, there in decrease in 
-                     percentage reporting enough sleep. In USA, the percentage of women reporting
-                     enough sleep increases steadily with age."))
+                     other age groups. The pattern is fluctuating for Japanese men, their lowest is 64.1%
+                     across age group 55-59 and highest is 75% across age group 60-64.For American males, 
+                     the percentage is steadily increasing from age 45. Both countries' males have similar
+                     sleep percentages across age groups. Higher percentages of females reported enough 
+                     sleep in Japan than USA across all age groups. The percentages are fluctuating across
+                     Japanese women with their lowest of 67.16% in 55-59 age group and highest of 79.31% in
+                     40-44 age group. In USA, after 54 years, the percentage of women reported enough sleep
+                     steadily increases."))
                )
              )
            )
