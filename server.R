@@ -81,17 +81,20 @@ server <- function(input, output) {
     if (input$HealthIssues == "Hypertension") {
       hypertension_plot <- ggplot(full_hypertension, aes(fill=Country, y=Total, x=Hypertension)) +
         geom_bar(position="dodge", stat="identity") +
-        ggtitle("Hypertension")
+        ggtitle("Hypertension") + 
+        ylab("Percentages")
       print(hypertension_plot)
-    } else if(input$HealthIssues == "BP") {
+    } else if(input$HealthIssues == "Blood Pressure") {
       bp_plot <- ggplot(full_bp, aes(fill=Country, y=Total, x=BP)) +
         geom_bar(position="dodge", stat="identity") +
-        ggtitle("Blood Pressure")
+        ggtitle("Blood Pressure") + 
+        ylab("Percentages")
       print(bp_plot)
     } else {
       diabetes_plot <- ggplot(full_diabetes, aes(fill=Country, y=Total, x=Diabetes)) +
         geom_bar(position="dodge", stat="identity") +
-        ggtitle("Diabetes")
+        ggtitle("Diabetes") + 
+        ylab("Percentages")
       print(diabetes_plot)
     }
   })
@@ -133,6 +136,7 @@ server <- function(input, output) {
         xaxis = list(title = "Age group")
       )
   })
+  
   # Sleep pattern plot
   output$sle_plot = renderPlotly({
     sle_data = sle_age_gen %>% select(`Age group`,Country,input$sex)
@@ -146,13 +150,5 @@ server <- function(input, output) {
         yaxis = list(title = str_title_case(paste0("Percentage"))), 
         xaxis = list(title = "Age group")
       )
-    
   })
-  
-   
-  
-  
-  
-  
-####################################################################################################
 }
