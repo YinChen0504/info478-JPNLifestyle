@@ -499,8 +499,6 @@ per_phy_japan <- convert_fun(per_phy_japan[-3,], '% exercised more than 30 min**
 #per_phy_japan
 per_phy <- rbind(do.call(data.frame, per_phy_japan), do.call(data.frame, per_phy_usa))
 colnames(per_phy)[1] <- '% exercised more than 30 min**'
-
-
 per_phy <- per_phy %>% gather('metric', 'status', 1)
 
 #combine as metrics into data frame
@@ -533,8 +531,8 @@ build_comp_plot <- function(data_df) {
   
   left_label <- paste(data_df$metric, data_df$USA,sep = ", ")
   right_label <- paste(data_df$metric, data_df$Japan,sep = ", ")
-  data_df$class <- ifelse(data_df$metric == '% exercised more than 30 min**' |
-                            data_df$metric == '% drinking alcohol*', "green", "red")
+  data_df$class <- ifelse(data_df$metric %in% c('% exercised more than 30 min**',
+                                                '% drinking alcohol*'), "green", "red")
   
   p <- ggplot(data_df) + geom_segment(aes(x=1, xend=2, y=USA, yend=Japan, col=class),
                                      size=.75, show.legend=F) + 

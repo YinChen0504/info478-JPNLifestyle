@@ -56,7 +56,7 @@ navbarPage("Lifestyle",
                           tags$li("From the marplot for hypertenion / diabetes / blood pressure, we can see that for any given type of disease, including hypertension, diabetes, and blood
                                   pressure, people in the US had outnumbered people in Japan, meaning that more people in the US were having health issues in 2013 compared to that of Japan.
                                   A greater number of years to live implies that a person has to live a relatively healthy lifestyle without performing many risky behaviors, such as smoking,
-                                  drinking, not being physically active, etc, because they contribute to lot os health issues, including the ones we conducted analysis on. Since people in 
+                                  drinking, not being physically active, etc, because they contribute to lot of health issues, including the ones we conducted analysis on. Since people in 
                                   Japan generally have higher life expectancy than people in the US and fewer people had health issues, we can say that having fewer health issues due to a 
                                   healthier lifestyle is significant for people to have a longer life expectancy."),
                           
@@ -176,16 +176,15 @@ navbarPage("Lifestyle",
                  p(paste0("The chart above presents comparison of metrics, percentages of people
                      exhibiting lifestyle habits like smoking, drinking alcohol, having enough 
                      sleep, having physical activity and percentages of people having 
-                     outcomes like hypertension and diabetes. The factors among which Japan
-                     is better than USA are in red. The factors at which USA is better than
-                     Japan is in green. We can observe than Japan is better than USA in all
-                     the aspects except at physical activity. But, as the survey questions
-                     for this value are formed differently it is necessary to investigate 
-                     further in this area. Excluding that, the major difference can be seen in
-                     percentage of people drinking alcohol followed by percentage of people 
-                     reporting enough sleep. As major difference can be observed in these 
+                     outcomes like hypertension and diabetes. The factors that are majorly different
+                     among Japan and USA are highlighted in green which are % exercised more than 
+                     30 min and % drinking alcohol. As major difference can be observed in these 
                      habits, these might be associated with longer life expectancy of Japanese
-                     people."))
+                     people. We can observe that in all other aspects as well Japan is better than USA.
+                     In habits like getting enough sleep and exercising, Japan reported higher 
+                     percentages than USA. In habits like smoking and drinking alcohol Japan reported
+                     lower percentages. Also lesser percentage of people in Japan have hypertension 
+                     and diabetes than in USA."))
                  )
                )
              ),
