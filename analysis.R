@@ -542,12 +542,37 @@ build_comp_plot <- function(data_df) {
 }
 
 #smoking percentages across age and gender in USA
+#filter male and female data 
+female_usa = usa_2013 %>% filter(sex == 'Female')
+male_usa = usa_2013 %>% filter(sex=='Male')
+fem_japan = japan_2013 %>% filter(gender == 'Female')
+mal_japan = japan_2013 %>% filter(gender == 'Male')
+
+#create survey designs for male and female
+female_design = svydesign(data = female_usa,
+                          weights = ~x.llcpwt,
+                          ids = ~1,
+                          nest=T)
+male_design = svydesign(data = male_usa,
+                        weights = ~x.llcpwt,
+                        ids = ~1,
+                        nest=T)
+
+
+# percentage of smokers across population
 smo_age_usa = data.frame(prop.table(svytable(~x.rfsmok3+age_group,
                                              design=brfss_design),margin=2))
 smo_age_usa = smo_age_usa %>% filter(x.rfsmok3==1) %>% select(-c(x.rfsmok3)) 
 
-smo_usa_gen = data.frame(prop.table(svytable(~x.rfsmok3+age_group+sex, brfss_design)
-                                    ,margin = 2))
+# percentage of smokers among males and females
+smo_fem_usa = data.frame(prop.table(svytable(~x.rfsmok3+age_group,female_design),
+                                    margin = 2))
+smo_fem_usa$sex = 'Female'
+
+smo_mal_usa = data.frame(prop.table(svytable(~x.rfsmok3+age_group,male_design),
+                                    margin = 2))
+smo_mal_usa$sex = 'Male'
+smo_usa_gen = rbind(smo_fem_usa,smo_mal_usa)
 smo_usa_gen = smo_usa_gen %>% spread(sex,Freq)
 smo_usa_gen = smo_usa_gen %>% filter(x.rfsmok3==1) %>% select(-c(x.rfsmok3))
 
@@ -556,12 +581,21 @@ smo_age_gen_usa$country = 'USA'
 colnames(smo_age_gen_usa) = c('Age group', 'Both', 'Female','Male','Country')
 #smo_age_gen_usa
 
-#smoking percentages across age and gender in Japan
+#smoking percentages across population in Japan
 smo_age_japan = data.frame(prop.table(table(japan_2013$`Smoking status`,
                                             japan_2013$age_group),margin=2))
 smo_age_japan = smo_age_japan %>% filter(Var1 == 1) %>% select(-c(Var1))
-smo_gen_japan = data.frame(prop.table(table(japan_2013$`Smoking status`, japan_2013$age_group,
-                                            japan_2013$gender), margin = 2))
+
+#smoking percentages across males and females
+smo_fem_japan = data.frame(prop.table(table(fem_japan$`Smoking status`,
+                                            fem_japan$age_group), margin = 2))
+smo_fem_japan$Var3 = 'Female'
+
+smo_mal_japan = data.frame(prop.table(table(mal_japan$`Smoking status`,
+                                            mal_japan$age_group), margin = 2))
+smo_mal_japan$Var3 = 'Male'
+smo_gen_japan = rbind(smo_fem_japan,smo_mal_japan)
+smo_gen_japan
 smo_gen_japan = smo_gen_japan %>% filter(Var1 == 1) %>% select(-c(Var1))
 smo_gen_japan = smo_gen_japan %>% spread(Var3,Freq)
 smo_age_gen_japan = left_join(smo_age_japan,smo_gen_japan)
@@ -575,31 +609,45 @@ smo_age_gen$Male = round(smo_age_gen$Male*100, 2)
 smo_age_gen
 
 #plot
-plot_ly(smo_age_gen, x=~`Age group`, y=~Both, color=~Country, text = '% of smokers',
-        type='bar', colors='Set1')
+#plot_ly(smo_age_gen, x=~`Age group`, y=~Both, color=~Country, text = '% of smokers',
+ #       type='bar', colors='Set1')
 
-# enough sleep percentages across age and gender in USA
-
+# enough sleep percentages across population in USA
 sle_age_usa = data.frame(prop.table(svytable(~sleptim1+age_group,
                                              design=brfss_design),margin=2))
 sle_age_usa = sle_age_usa %>% filter(sleptim1==1) %>% select(-c(sleptim1)) 
 
-sle_usa_gen = data.frame(prop.table(svytable(~sleptim1+age_group+sex, brfss_design)
-                                    ,margin = 2))
+#enough sleep percentages across males and females in USA
+sle_fem_usa = data.frame(prop.table(svytable(~sleptim1+age_group,female_design),
+                                    margin = 2))
+sle_fem_usa$sex = 'Female'
+sle_mal_usa = data.frame(prop.table(svytable(~sleptim1+age_group,male_design),
+                                    margin = 2))
+sle_mal_usa$sex = 'Male'
+sle_usa_gen = rbind(sle_fem_usa,sle_mal_usa)
+sle_usa_gen
+
 sle_usa_gen = sle_usa_gen %>% spread(sex,Freq)
 sle_usa_gen = sle_usa_gen %>% filter(sleptim1==1) %>% select(-c(sleptim1))
-
 sle_age_gen_usa = left_join(sle_age_usa, sle_usa_gen)
 sle_age_gen_usa$country = 'USA'
 colnames(sle_age_gen_usa) = c('Age group', 'Both', 'Female','Male','Country')
 sle_age_gen_usa
 
-#enough sleep percentages across age and gender in Japan
+#enough sleep percentages across population in Japan
 sle_age_japan = data.frame(prop.table(table(japan_2013$`Enough sleep`,
                                             japan_2013$age_group),margin=2))
 sle_age_japan <- sle_age_japan %>% filter(Var1 == "1.0") %>% select(-c(Var1))
-sle_gen_japan = data.frame(prop.table(table(japan_2013$`Enough sleep`,japan_2013$age_group,
-                                            japan_2013$gender), margin = 2))
+
+#enough sleep percentages across males and females in Japan
+sle_fem_japan = data.frame(prop.table(table(fem_japan$`Enough sleep`,
+                                            fem_japan$age_group), margin = 2))
+sle_fem_japan$Var3 = 'Female'
+sle_mal_japan = data.frame(prop.table(table(mal_japan$`Enough sleep`,
+                                            mal_japan$age_group), margin = 2))
+sle_mal_japan$Var3 = 'Male'
+sle_gen_japan = rbind(sle_fem_japan,sle_mal_japan)
+sle_gen_japan
 sle_gen_japan = sle_gen_japan %>% filter(Var1 == "1.0") %>% select(-c(Var1))
 sle_gen_japan = sle_gen_japan %>% spread(Var3,Freq)
 sle_age_gen_japan = left_join(sle_age_japan,sle_gen_japan)
@@ -614,12 +662,12 @@ sle_age_gen$Male = round(sle_age_gen$Male*100, 2)
 sle_age_gen
 
 #plots
-plot_ly(sle_age_gen, x=~`Age group`, y=~Both, color=~Country, text = '% reported enough sleep',
-        type='bar', colors='Set1')
-plot_ly(sle_age_gen, x=~`Age group`, y=~Male, color=~Country, text = '% reported enough sleep',
-        type='bar', colors='Set1')
-plot_ly(sle_age_gen, x=~`Age group`, y=~Female, color=~Country, text = '% reported enough sleep',
-        type='bar', colors='Set1')
+# plot_ly(sle_age_gen, x=~`Age group`, y=~Both, color=~Country, text = '% reported enough sleep',
+#         type='bar', colors='Set1')
+# plot_ly(sle_age_gen, x=~`Age group`, y=~Male, color=~Country, text = '% reported enough sleep',
+#         type='bar', colors='Set1')
+# plot_ly(sle_age_gen, x=~`Age group`, y=~Female, color=~Country, text = '% reported enough sleep',
+#         type='bar', colors='Set1')
 
 
 
