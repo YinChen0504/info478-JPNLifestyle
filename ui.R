@@ -24,7 +24,7 @@ navbarPage("Lifestyle",
                           a("Kaggle", href = "https://www.kaggle.com/kumarajarshi/life-expectancy-who/version/1")),
                         
                         p("Our code can be accessed on ", a("GitHub.", href = "https://github.com/YinChen0504/info478-JPNLifestyle")),
-                        p("Major Libraries used: ", tags$b("Plotly, Dplyr, ShinyThemes")),
+                        p("Major Libraries used: ", tags$b("Plotly, DPLYR, ShinyThemes")),
                         p("Data Reading: ", tags$b("CSV, XLSX"))
                       ),
                       
@@ -118,7 +118,14 @@ navbarPage("Lifestyle",
                                   day. This tells us that in 2013, there was a much higher percentage of people in Japan that were physically active than in the United States. When you exercise, it 
                                   reduces your risk of a heart attack, lowers blood cholesterol level, lowers blood pressure, strengthens your bones, muscles and joints and lowers the risk of 
                                   developing osteoporosis and it also makes you feel better – with more energy, and a better mood it will make you feel more relaxed and thus, get better sleep. 
-                                  In conclusion, our data and calculations shows that exercising is very important and is the cause of higher life expectancies for Japanese people in the year of 2013.")
+                                  In conclusion, our data and calculations shows that exercising is very important and is the cause of higher life expectancies for Japanese people in the year of 2013.",
+                                  br(),
+                                  "If you look at the comparison plot you can notice that alcohol also plays a big role in life expectancies for Japan and the U.S. 52% of the Americans who were
+                                  surveyed are drinkers whereas in Japan only 21.64% marked that they drank alcohol. This huge gap may mean that if you drink less, than you may have higher life
+                                  expectancies. This is what is interpreted by the graph. If you drink a lot of alcohol it may harm your liver and your liver is a remarkable organ with hundreds
+                                  of essential functions. One of them being, it neutralizes various toxic substances that we intake. But drinking a lot of alcohol rubs away our livers lining which
+                                  erodes its ability to function well. Thus it can can lead to liver disease or heart failure, which can result in death and lower the average life expectancy of
+                                  the population.")
                         ),
                         
                         h3("Methods Used"),

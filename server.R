@@ -40,12 +40,14 @@ server <- function(input, output) {
       exercise_df <- filter(us_percent, age_group == input$age_exercise)
       plot_ly(exercise_df, x = ~age_group, y = ~percentage, type = "bar") %>%
         layout(title = "Physically Active by Age in the US", 
-               yaxis = list(range = c(0, 100), ticksuffix = "%"))
+               yaxis = list(range = c(0, 100), ticksuffix = "%", title = "Percentage"),
+               xaxis = list(title = "Age Group"))
     } else {
       exercise_df <- filter(jpn_merged, age_group == input$age_exercise)
       plot_ly(exercise_df, x = ~Age, y = ~percentage, type = "bar", color = ~age_group) %>% 
         layout(title = "Physically Active by Age in Japan", 
-               yaxis = list(range = c(0, 100), ticksuffix = "%"))
+               yaxis = list(range = c(0, 100), ticksuffix = "%"),
+               xaxis = list(title = "Age Group"))
     }
   })
   
