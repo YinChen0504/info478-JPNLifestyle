@@ -22,10 +22,6 @@ us_data <- read.csv("data/usa_data.csv", stringsAsFactors = FALSE)
 jpn_data <- read_xlsx("data/Japan2013.xlsx")
 world <- read.csv('data/worldData.csv', stringsAsFactors = FALSE)
 
-
-# usa_data <- us_data %>%
-#   select(sex, x.ageg5yr, avedrnk2, x.ageg5yr, exerany2, exerhmm1, bpmeds, diabete3, bphigh4)
-# write.csv(usa_data, file = "usa_data.csv")
 #######################################################################################################################################################################################
 
 # YIN
@@ -348,7 +344,10 @@ usa_2013 <- us_data %>% mutate(
   diabete3 = replace(diabete3, diabete3 == 7 | diabete3 == 9, NA),
   drnkany5 = replace(drnkany5, drnkany5 == 2, 0),
   drnkany5 = replace(drnkany5, drnkany5 == 7 | drnkany5 == 9, NA),
-  x.totinda = replace(x.totinda, x.totinda == 9, NA)
+  x.totinda = replace(x.totinda, x.totinda == 9, NA),
+  exerhmm1 = replace(exerhmm1, exerhmm1 == 777 | exerhmm1 == 999, NA),
+  exerhmm1 = replace(exerhmm1, exerhmm1 <= 210, 2),
+  exerhmm1 = replace(exerhmm1, exerhmm1 > 210, 1)
 )
 
 # Assign Male and Female values instead of numbers for sex
@@ -472,13 +471,16 @@ per_smo <- rbind(per_smo_japan, per_smo_usa)
 per_smo <- per_smo %>% gather('metric', 'status', 1)
 
 #Physical activity percentages across USA and Japan
-per_phy_usa <- data.frame(prop.table(svytable(~x.totinda, brfss_design)))
-per_phy_usa <- convert_fun(per_phy_usa, '% had physical activity**', 'USA' )
+per_phy_usa <- data.frame(prop.table(svytable(~exerhmm1, brfss_design)))
+per_phy_usa <- convert_fun(per_phy_usa, '% exercised more than 30 min**', 'USA' )
 #per_phy_usa
-per_phy_japan <- data.frame(prop.table(table(japan_2013$`Walking or physical activity-category`)))
-per_phy_japan <- convert_fun(per_phy_japan,'% had physical activity**', 'Japan')
+per_phy_japan <- data.frame(prop.table(table(japan_2013$`Exercise more than 30 minutes-category`)))
+per_phy_japan <- convert_fun(per_phy_japan[-3,], '% exercised more than 30 min**', 'Japan')
 #per_phy_japan
-per_phy <- rbind(per_phy_japan, per_phy_usa)
+per_phy <- rbind(do.call(data.frame, per_phy_japan), do.call(data.frame, per_phy_usa))
+colnames(per_phy)[1] <- '% exercised more than 30 min**'
+
+
 per_phy <- per_phy %>% gather('metric', 'status', 1)
 
 #combine as metrics into data frame
